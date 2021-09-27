@@ -30,6 +30,19 @@ docker run -p 80:80 -p 443:443 \
            -v /srv/iredmail/clamav:/var/lib/clamav \
            --name=iredmail lejmr/iredmail:mysql-latest
 
+docker run -d \
+	         -p 80:80 \
+	         -p 443:443 \
+	         -p 25:25 \
+	         -p 587:587 \
+	         -p 995:995 \
+	         -p 3306:3306 \
+	         -h "mail.excample.com"  \
+	         -e "TZ=Asia/Shanghai" \
+	         -e "MYSQL_ROOT_PASSWORD=123456" \
+	         -e "POSTMASTER_PASSWORD={PLAIN}123456"  \
+	         -e "IREDAPD_PLUGINS=['reject_null_sender', 'reject_sender_login_mismatch', 'throttle', 'sql_alias_access_policy']" \
+           --name=iredmail iredmail:1.4.2-optimal
 ```
 
 ## Upgrade from version 1.0 or above
