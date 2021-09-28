@@ -183,10 +183,13 @@ smtpd_helo_restrictions =
 smtpd_sender_restrictions =
     reject_non_fqdn_sender
     reject_unlisted_sender
+    reject_unknown_sender_domain
+    reject_sender_login_mismatch    
+    reject_authenticated_sender_login_mismatch
+    reject_unauthenticated_sender_login_mismatch
     permit_mynetworks
     permit_sasl_authenticated
     check_sender_access pcre:/etc/postfix/sender_access.pcre
-    reject_unknown_sender_domain
 
 # Recipient restrictions
 smtpd_recipient_restrictions =
